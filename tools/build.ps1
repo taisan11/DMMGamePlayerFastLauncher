@@ -2,9 +2,10 @@ pip freeze > requirements-lock.txt
 python .\tools\build.py
 
 
-pyinstaller DMMGamePlayerFastLauncher\DMMGamePlayerFastLauncher.py --noconsole --onefile --add-data ".venv\Lib\site-packages\customtkinter\;customtkinter" --icon assets\icons\DMMGamePlayerFastLauncher.ico
+# pyinstaller DMMGamePlayerFastLauncher\DMMGamePlayerFastLauncher.py --noconsole --onefile --add-data ".venv\Lib\site-packages\customtkinter\;customtkinter" --icon assets\icons\DMMGamePlayerFastLauncher.ico
+nuitka --follow-imports --onefile --standalone --enable-plugin=tk-inter --windows-icon-from-ico=assets\icons\DMMGamePlayerFastLauncher.ico DMMGamePlayerFastLauncher\DMMGamePlayerFastLauncher.py
 
-Copy-Item -Path "dist\DMMGamePlayerFastLauncher.exe" -Destination "windows" -Force
+Copy-Item -Path "DMMGamePlayerFastLauncher.exe" -Destination "windows" -Force
 
 
 Copy-Item -Path "assets" -Destination "windows" -Force -Recurse
